@@ -2,11 +2,14 @@
 #define SHIP_H
 
 #include <QGraphicsPathItem>
+class Port;
 
 class Ship : public QGraphicsPathItem
 {
 public:
-	Ship(qreal x=0, qreal y=0, bool direction=true);
+    enum { Type = UserType + 1 };
+
+    Ship(qreal x=0, qreal y=0, bool direction=true);
 
 	void moveUp(float shift);
 	void moveDown(float shift);
@@ -14,6 +17,15 @@ public:
 	void moveRight(float shift);
 
 	void setDirection(bool rightDirection);
+
+    void load();
+    void unload();
+    bool isLoaded() const;
+
+    static void createPolygons();
+
+    // QGraphicsItem interface
+    int type() const;
 
 protected:
 	// QGraphicsItem interface
@@ -24,9 +36,11 @@ protected:
 	virtual void focusOutEvent(QFocusEvent *event);
 
 private:
+    bool     loaded;
 	bool	 direction;
-	QPolygon right;
-	QPolygon left;
+
+    static QPolygon right;
+    static QPolygon left;
 };
 
 #endif // SHIP_H

@@ -14,9 +14,13 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    ship.cpp
+    ship.cpp \
+    port.cpp \
+    base.cpp
 
 HEADERS  += mainwindow.h \
-    ship.h
+    ship.h \
+    port.h \
+    base.h
 
 FORMS    += mainwindow.ui
